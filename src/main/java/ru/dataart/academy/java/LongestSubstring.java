@@ -11,30 +11,21 @@ public class LongestSubstring {
      */
 
     public int getLengthOfLongestSubstring(String checkString) {
-        int stringLength = checkString.length();
-        if (stringLength <= 1) {
-            return stringLength;
-        }
-
-        int maxLength = 1;
-        int tempLength = 1;
-        int leftBound = 1;
-        HashMap<Character, Integer> charsMap = new HashMap<>();
-        charsMap.put(checkString.charAt(0), 1);
-
-        for (int i = 1; i < stringLength; i++) {
-            char tmpChar = checkString.charAt(i);
-            Integer tmpCharIndex = charsMap.get(tmpChar);
-
-            if (tmpCharIndex == null || tmpCharIndex < leftBound) {
-                tempLength++;
-                maxLength = maxLength > tempLength ? maxLength : tempLength;
-            } else {
-                leftBound = tmpCharIndex;
-                tempLength = i - leftBound + 1;
+            int stringLength = checkString.length();
+            if (stringLength <= 1) {
+                return stringLength;
             }
-            charsMap.put(tmpChar, i + 1);
-        }
+            String temp = "";
+            int maxLength = 0;
+
+            for (char ch : checkString.toCharArray()) {
+                String current = String.valueOf(ch);
+                if (temp.contains(current)) {
+                    temp = temp.substring(temp.indexOf(current) + 1);
+                }
+                temp += ch;
+                maxLength = maxLength > temp.length() ? maxLength : temp.length();
+            }
         return maxLength;
     }
 }
