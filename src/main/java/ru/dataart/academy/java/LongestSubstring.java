@@ -10,7 +10,7 @@ public class LongestSubstring {
      * amam -> 2 (am)
      */
 
-    public static int getLengthOfLongestSubstring(String checkString) {
+    public int getLengthOfLongestSubstring(String checkString) {
         int stringLength = checkString.length();
         if (stringLength <= 1) {
             return stringLength;
