@@ -9,23 +9,26 @@ public class LongestSubstring {
      * Example: dnmdncbb  -> 5 (mdncb)
      * amam -> 2 (am)
      */
+    
+    public  int getLengthOfLongestSubstring(String checkString) {
+        int stringLength = checkString.length();
+        if (stringLength <= 1) {
+            return stringLength;
+        }
+        
+        StringBuilder temp = new StringBuilder();
+        int maxLength = 0;
 
-    public int getLengthOfLongestSubstring(String checkString) {
-            int stringLength = checkString.length();
-            if (stringLength <= 1) {
-                return stringLength;
+        for (char ch : checkString.toCharArray()) {
+            String current = String.valueOf(ch);
+            if (temp.indexOf(current) != -1) {
+                temp = new StringBuilder(temp.substring(temp.indexOf(current) + 1));
             }
-            String temp = "";
-            int maxLength = 0;
-
-            for (char ch : checkString.toCharArray()) {
-                String current = String.valueOf(ch);
-                if (temp.contains(current)) {
-                    temp = temp.substring(temp.indexOf(current) + 1);
-                }
-                temp += ch;
-                maxLength = maxLength > temp.length() ? maxLength : temp.length();
-            }
+            temp.append(ch);
+            if (maxLength < temp.length()) {
+                maxLength = temp.length();
+            }            
+        }
         return maxLength;
     }
 }
