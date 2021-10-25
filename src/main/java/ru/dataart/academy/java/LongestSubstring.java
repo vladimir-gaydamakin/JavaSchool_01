@@ -1,7 +1,5 @@
 package ru.dataart.academy.java;
 
-import java.util.HashMap;
-
 public class LongestSubstring {
     /**
      * @param checkString - input string to check
